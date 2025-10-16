@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>All in One Page</title>
+
+  <style>
+
+    /* Google Font */
+
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap');
+
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+
+      font-family: 'Poppins', sans-serif;
+
+    }
+
+    body {
+
+      background: linear-gradient(135deg, #141e30, #243b55);
+
+      color: #fff;
+
+      min-height: 100vh;
+
+      padding: 40px;
+
+    }
+
+    h1 {
+
+      text-align: center;
+
+      margin-bottom: 30px;
+
+      font-size: 36px;
+
+    }
+
+    .container {
+
+      display: grid;
+
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+      gap: 30px;
+
+    }
+
+    .card {
+
+      background: rgba(255, 255, 255, 0.1);
+
+      padding: 20px;
+
+      border-radius: 20px;
+
+      backdrop-filter: blur(12px);
+
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+
+      text-align: center;
+
+    }
+
+    /* ===== Login Page ===== */
+
+    .login-box h2 {
+
+      margin-bottom: 20px;
+
+    }
+
+    .login-box input {
+
+      width: 100%;
+
+      padding: 12px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      margin: 10px 0;
+
+      background: rgba(255, 255, 255, 0.2);
+
+      color: #fff;
+
+    }
+
+    .login-btn {
+
+      width: 100%;
+
+      padding: 12px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      font-size: 16px;
+
+      color: #fff;
+
+      cursor: pointer;
+
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+
+      margin-top: 10px;
+
+    }
+
+    /* ===== Calculator ===== */
+
+    .display {
+
+      width: 100%;
+
+      height: 50px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      margin-bottom: 15px;
+
+      font-size: 20px;
+
+      text-align: right;
+
+      padding: 10px;
+
+      background: rgba(255, 255, 255, 0.2);
+
+      color: #fff;
+
+    }
+
+    .buttons {
+
+      display: grid;
+
+      grid-template-columns: repeat(4, 1fr);
+
+      gap: 10px;
+
+    }
+
+    .buttons button {
+
+      padding: 15px;
+
+      border: none;
+
+      border-radius: 12px;
+
+      font-size: 18px;
+
+      cursor: pointer;
+
+      background: linear-gradient(45deg, #00c6ff, #0072ff);
+
+      color: #fff;
+
+    }
+
+    .buttons .equal {
+
+      grid-column: span 2;
+
+      background: linear-gradient(45deg, #ff416c, #ff4b2b);
+
+    }
+
+    .buttons .clear {
+
+      background: linear-gradient(45deg, #f7971e, #ffd200);
+
+      color: #000;
+
+    }
+
+    /* ===== Digital Clock ===== */
+
+    .clock {
+
+      font-size: 48px;
+
+      font-weight: bold;
+
+      color: #00c6ff;
+
+      text-shadow: 0 0 15px #00c6ff, 0 0 30px #0072ff;
+
+    }
+
+    .date {
+
+      margin-top: 10px;
+
+      font-size: 18px;
+
+      opacity: 0.8;
+
+    }
+
+    /* ===== Analog Clock ===== */
+
+    .analog-clock {
+
+      width: 250px;
+
+      height: 250px;
+
+      border: 10px solid rgba(255, 255, 255, 0.2);
+
+      border-radius: 50%;
+
+      margin: 0 auto;
+
+      background: rgba(255, 255, 255, 0.1);
+
+      position: relative;
+
+    }
+
+    .center {
+
+      width: 12px;
+
+      height: 12px;
+
+      background: #ff4b2b;
+
+      border-radius: 50%;
+
+      position: absolute;
+
+      top: 50%;
+
+      left: 50%;
+
+      transform: translate(-50%, -50%);
+
+      z-index: 10;
+
+    }
+
+    .hand {
+
+      width: 50%;
+
+      height: 4px;
+
+      background: #fff;
+
+      position: absolute;
+
+      top: 50%;
+
+      transform-origin: 100%;
+
+      transform: rotate(90deg);
+
+    }
+
+    .hour { height: 6px; background: #00c6ff; }
+
+    .minute { height: 4px; background: #ffdd00; }
+
+    .second { height: 2px; background: #ff4b2b; }
+
+  </style>
+
+</head>
+
+<body>
+
+  <h1>All in One Web Page</h1>
+
+  <div class="container">
+
+    <!-- Login -->
+
+    <div class="card login-box">
+
+      <h2>Login</h2>
+
+      <input type="text" placeholder="Username">
+
+      <input type="password" placeholder="Password">
+
+      <button class="login-btn">Login</button>
+
+    </div>
+
+    <!-- Calculator -->
+
+    <div class="card">
+
+      <h2>Calculator</h2>
+
+      <input type="text" id="display" class="display" disabled>
+
+      <div class="buttons">
+
+        <button class="clear" onclick="clearDisplay()">C</button>
+
+        <button onclick="appendValue('/')">÷</button>
+
+        <button onclick="appendValue('*')">×</button>
+
+        <button onclick="appendValue('-')">-</button>
+
+        <button onclick="appendValue('7')">7</button>
+
+        <button onclick="appendValue('8')">8</button>
+
+        <button onclick="appendValue('9')">9</button>
+
+        <button onclick="appendValue('+')">+</button>
+
+        <button onclick="appendValue('4')">4</button>
+
+        <button onclick="appendValue('5')">5</button>
+
+        <button onclick="appendValue('6')">6</button>
+
+        <button onclick="appendValue('.')">.</button>
+
+        <button onclick="appendValue('1')">1</button>
+
+        <button onclick="appendValue('2')">2</button>
+
+        <button onclick="appendValue('3')">3</button>
+
+        <button onclick="calculate()">=</button>
+
+        <button onclick="appendValue('0')" class="equal">0</button>
+
+      </div>
+
+    </div>
+
+    <!-- Digital Clock -->
+
+    <div class="card">
+
+      <h2>Digital Clock</h2>
+
+      <div class="clock" id="clock">00:00:00</div>
+
+      <div class="date" id="date">Loading...</div>
+
+    </div>
+
+    <!-- Analog Clock -->
+
+    <div class="card">
+
+      <h2>Analog Clock</h2>
+
+      <div class="analog-clock">
+
+        <div class="hand hour" id="hour"></div>
+
+        <div class="hand minute" id="minute"></div>
+
+        <div class="hand second" id="second"></div>
+
+        <div class="center"></div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    /* ===== Calculator Functions ===== */
+
+    const display = document.getElementById("display");
+
+    function appendValue(value) { display.value += value; }
+
+    function clearDisplay() { display.value = ""; }
+
+    function calculate() {
+
+      try { display.value = eval(display.value); }
+
+      catch { display.value = "Error"; }
+
+    }
+
+    /* ===== Digital Clock ===== */
+
+    function updateClock() {
+
+      let now = new Date();
+
+      let hours = now.getHours().toString().padStart(2, '0');
+
+      let minutes = now.getMinutes().toString().padStart(2, '0');
+
+      let seconds = now.getSeconds().toString().padStart(2, '0');
+
+      let day = now.toLocaleDateString('en-US', { weekday: 'long' });
+
+      let date = now.toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: 'numeric' });
+
+      document.getElementById("clock").textContent = `${hours}:${minutes}:${seconds}`;
+
+      document.getElementById("date").textContent = `${day}, ${date}`;
+
+    }
+
+    setInterval(updateClock, 1000);
+
+    updateClock();
+
+    /* ===== Analog Clock ===== */
+
+    function updateAnalogClock() {
+
+      let now = new Date();
+
+      let seconds = now.getSeconds();
+
+      let minutes = now.getMinutes();
+
+      let hours = now.getHours();
+
+      let secDeg = ((seconds / 60) * 360) + 90;
+
+      let minDeg = ((minutes / 60) * 360) + ((seconds/60)*6) + 90;
+
+      let hourDeg = ((hours / 12) * 360) + ((minutes/60)*30) + 90;
+
+      document.getElementById("second").style.transform = `rotate(${secDeg}deg)`;
+
+      document.getElementById("minute").style.transform = `rotate(${minDeg}deg)`;
+
+      document.getElementById("hour").style.transform = `rotate(${hourDeg}deg)`;
+
+    }
+
+    setInterval(updateAnalogClock, 1000);
+
+    updateAnalogClock();
+
+  </script>
+
+</body>
+
+</html>
+
